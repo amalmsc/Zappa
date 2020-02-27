@@ -2031,8 +2031,6 @@ class Zappa:
                 description_kwargs[key] = value
         if 'LambdaConfig' not in description_kwargs:
             description_kwargs['LambdaConfig'] = LambdaConfig
-        description_kwargs['Policies']['PasswordPolicy']['TemporaryPasswordValidityDays'] = \
-        description_kwargs['AdminCreateUserConfig']['UnusedAccountValidityDays']
         description_kwargs['AdminCreateUserConfig'].pop('UnusedAccountValidityDays', None)
         result = self.cognito_client.update_user_pool(UserPoolId=user_pool, **description_kwargs)
         if result['ResponseMetadata']['HTTPStatusCode'] != 200:
